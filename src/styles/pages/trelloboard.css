@@ -1,0 +1,128 @@
+:root {
+  --primary-color: rgb(68, 129, 185);
+  --font-color: rgb(21, 78, 131);
+}
+
+html{
+  font-size: 12px;
+  color: var(--font-color);
+  font-weight: 700;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body { 
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+form {
+  width: 1050px;
+  height: 429px;
+  margin: 56px auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+form  .container_1 .item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
+}
+
+form .container_1 label {
+  margin-bottom: 3px;
+}
+
+form .container_1 .item input {
+  height: 32px;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+  display: inline-block;
+}
+
+form .container_1 .item textarea {
+  resize: none;
+  height: 260px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  display: inline-block;
+
+}
+
+form .container_1 .item textarea::placeholder{
+  color: rgba(103, 95, 226, 0.596);
+  padding-left: 16px;
+  padding-top: 12px;
+}
+
+
+input[type="checkbox"]{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+form .container_2 div.checkbox {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+label.checkbox {
+  display: inline-flex;
+  align-items: center;
+  
+}
+
+.checkbox__control {
+  display: inline-flex;
+
+  width: 24px;
+  height: 24px;
+  border-radius: 0.25em;
+  border: 0.1em solid currentColor;
+}
+
+.radio__label {
+  margin-left: 10px;
+  font-weight: normal;
+}
+
+.checkbox__control svg {
+  transition: transform 0.1s ease-in 25ms;
+  transform: scale(0);
+  transform-origin: bottom left;
+}
+
+.checkbox__input input:checked
+ + .checkbox__control svg {
+  transform: scale(1);
+}
+
+.checkbox__input input:focus
+ + .checkbox__control {
+  box-shadow: 0 0 0 0.05em #fff, 0 0 0.15em 0.1em currentColor;
+}
+
+form .container_2 {
+  margin-left: 28px;
+  margin-top: 28px;
+  position: relative;
+}
+form .container_2 .item{
+  margin-bottom: 43px;
+}
+
+
+
+.confirm-button {
+  position: absolute;
+  right: 0;
+  bottom: 28px;
+  width: 100px;
+  height: 43px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+}
