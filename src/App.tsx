@@ -18,9 +18,6 @@ const initialValue = {
 
 function App(){
   const [values, setValues] = useState(initialValue)
-  const [due, setDue] = useState('')
-
-  console.log(due)
 
   function onChange(event: any) {
     const { name, value } = event.target
