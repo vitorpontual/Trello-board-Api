@@ -1,11 +1,9 @@
-import axios from "axios";
 import React, { FormEvent, useState } from "react";
-import { useHistory } from "react-router";
 import Select from "react-select";
 import * as dotenv from "dotenv";
 
 import './styles/pages/trelloboard.css'
-import { defaultProps } from "react-select/src/stateManager";
+
 dotenv.config()
 
 
@@ -19,7 +17,6 @@ const initialValue = {
 }
 
 function App(){
-  const history = useHistory();
   const [values, setValues] = useState(initialValue)
   const [due, setDue] = useState('')
 
