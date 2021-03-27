@@ -31,6 +31,7 @@ export default function TrelloBoard() {
 
   }
 
+
   const myDate = new Date();
 
   const options = [
@@ -134,11 +135,7 @@ export default function TrelloBoard() {
             <div className="item">
               <label htmlFor="dropdown"></label>
 
-              <select name="due" onChange={event => setDue(event.target.value)}>
-                <option value={options[0].value}>+ 1 Hour</option>
-                <option value={options[1].value}>+ 3 Hour</option>
-                <option value={options[2].value}>+ 5 Hour</option>
-              </select>
+              <Select options={options} />
             </div>
             <div className="item">
               <div className="tags"></div>

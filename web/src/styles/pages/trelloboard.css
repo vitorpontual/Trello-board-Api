@@ -1,3 +1,16 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:100,300';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.3.2/css/simple-line-icons.min.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css';
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:300,700';
+
+body {
+    width: 100%;
+    min-height: 900px;
+    margin: 3em auto;
+      
+    font-family: 'Roboto Mono';
+    letter-spacing: 1px;
+}
 :root {
   --primary-color: rgb(68, 129, 185);
   --font-color: rgb(21, 78, 131);
@@ -10,11 +23,7 @@ html{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-body { 
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
+
 
 form {
   width: 1050px;
@@ -140,3 +149,19 @@ form .container_2 .item{
   background-color: var(--primary-color);
   color: white;
 }
+
+form .due {
+  width: 322px;
+  height: 48px;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--primary-color);
+  background-color:rgb(68, 129, 185);
+
+  color: white;
+}
+
+form option{
+  color: white;
+}
+
