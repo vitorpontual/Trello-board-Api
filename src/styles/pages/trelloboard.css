@@ -80,7 +80,7 @@ form .container_1 .item textarea::placeholder{
 }
 
 
-input[type="checkbox"]{
+input[type="radio"]{
   opacity: 0;
   width: 0;
   height: 0;
