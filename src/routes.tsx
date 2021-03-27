@@ -6,7 +6,7 @@ function Routes(){
   return (
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact component={TrelloBoard} />
+      <Route path="/index" exact component={TrelloBoard} />
     </Switch>
   </BrowserRouter>
   )
