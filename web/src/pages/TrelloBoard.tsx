@@ -5,6 +5,7 @@ import Select from "react-select";
 import * as dotenv from "dotenv";
 
 import '../styles/pages/trelloboard.css'
+import { defaultProps } from "react-select/src/stateManager";
 dotenv.config()
 
 
@@ -15,32 +16,27 @@ const initialValue = {
   email: "",
   desc: "",
   idLables: "",
-  due: ""
-
 }
 export default function TrelloBoard() {
   const history = useHistory();
   const [values, setValues] = useState(initialValue)
   const [due, setDue] = useState('')
 
+  console.log(due)
+
   function onChange(event: any) {
     const { name, value } = event.target
 
     setValues({ ...values, [name]: value })
+
   }
-
-  function handleChange(event: any) {
-    setDue(due)
-  }
-
-
 
   const myDate = new Date();
 
   const options = [
-    { name: "due", value: myDate.setHours(myDate.getHours() + 1), label: "1 Hour" },
-    { name: "due", value: myDate.setHours(myDate.getHours() + 3), label: "3 Hours" },
-    { name: "due", value: myDate.setHours(myDate.getHours() + 5), label: "5 hours" },
+    {  value: myDate.setHours(myDate.getHours() + 1), label: "1 Hour" },
+    {  value: myDate.setHours(myDate.getHours() + 3), label: "3 Hours" },
+    {  value: myDate.setHours(myDate.getHours() + 5), label: "5 hours" },
   ]
 
   async function handleSubmit(event: FormEvent) {
@@ -138,7 +134,11 @@ export default function TrelloBoard() {
             <div className="item">
               <label htmlFor="dropdown"></label>
 
-              <Select options={options} />
+              <select name="due" onChange={event => setDue(event.target.value)}>
+                <option value={options[0].value}>+ 1 Hour</option>
+                <option value={options[1].value}>+ 3 Hour</option>
+                <option value={options[2].value}>+ 5 Hour</option>
+              </select>
             </div>
             <div className="item">
               <div className="tags"></div>
