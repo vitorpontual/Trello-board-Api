@@ -1,41 +1,70 @@
+import axios from "axios";
 import React, { FormEvent, useState } from "react";
 import { useHistory } from "react-router";
 import Select from "react-select";
-import api from "../service/api";
+import * as dotenv from "dotenv";
 
 import '../styles/pages/trelloboard.css'
+dotenv.config()
 
+
+const url = `https://api.trello.com/1/cards?key=${process.env.REACT_APP_TRELLO_KEY}&token=${process.env.REACT_APP_TRELLO_TOKEN}&idList=${process.env.REACT_APP_TRELLO_ID_LIST}`
+
+const initialValue = {
+  name: "",
+  email: "",
+  desc: "",
+  idLables: "",
+  due: ""
+
+}
 export default function TrelloBoard() {
-
   const history = useHistory();
+  const [values, setValues] = useState(initialValue)
+  const [due, setDue] = useState('')
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [color, setColor] = useState('');
-  const [text, setText] = useState('');
-  const [dropdown, setDropdown] = useState('');
+  function onChange(event: any) {
+    const { name, value } = event.target
 
+    setValues({ ...values, [name]: value })
+  }
+
+  function handleChange(event: any) {
+    setDue(due)
+  }
+
+
+
+  const myDate = new Date();
 
   const options = [
-    { value: "blue", label: "Blue" },
-    { value: "red", label: "Red" },
-    { value: "green", label: "Green" },
+    { name: "due", value: myDate.setHours(myDate.getHours() + 1), label: "1 Hour" },
+    { name: "due", value: myDate.setHours(myDate.getHours() + 3), label: "3 Hours" },
+    { name: "due", value: myDate.setHours(myDate.getHours() + 5), label: "5 hours" },
   ]
 
   async function handleSubmit(event: FormEvent) {
-    event.preventDefault();
+    event.preventDefault()
+    const jason = JSON.stringify(values)
+    console.log(jason)
 
-    const data = new FormData()
 
-    data.append('name', name);
-    data.append('email', email);
-    data.append('color', color);
-    data.append('text', text);
-    data.append('dropdown', dropdown);
-
-    await api.post(`https://api.trello.com/1/boards/${process.env.REACT_APP_TRELLO_ID}/labels?key=${process.env.REACT_APP_TRELLO_KEY}&token=${process.env.REACT_APP_TRELLO_TOKEN}&name=${name}&color=${color}`, data)
-
-    history.push('/')
+    fetch(url, {
+      method: 'POST',
+      body: jason,
+      headers: {
+        'Content-Type': 'application/json',
+        
+      }
+    })
+    .then(response => {
+        console.log(
+          `Response: ${response.status} ${response.statusText}`
+        );
+        return response.text();
+      })
+      .then(text => console.log(text))
+      .catch(err => console.error(err));
 
   }
 
@@ -48,65 +77,68 @@ export default function TrelloBoard() {
               <label htmlFor="name">Name</label>
               <input
                 type="text"
-                id="name"
+                name="name"
                 required
-                value={name}
-                onChange={event => setName(event.target.value)} />
+                onChange={onChange}
+                placeholder="Card name" />
             </div>
             <div className="item">
               <label htmlFor="email">E-mail</label>
               <input
                 type="email"
-                id="email"
+                name="email"
                 required
-                value={email}
-                onChange={event => setEmail(event.target.value)} />
+                placeholder="Your email"
+                onChange={onChange} />
             </div>
             <div className="item">
+              <label htmlFor="desc"></label>
               <textarea
-                name="text"
+                name="desc"
                 placeholder="Type Something..."
-                value={text}
-                onChange={event => setText(event.target.value)} />
+                onChange={onChange} />
             </div>
           </div>
+
           <div className="container_2">
             <div className="item checkbox">
               <label className="checkbox">
                 <span className="checkbox__input">
-                  <input type="checkbox" id="color" value="azul" />
+                  <input type="checkbox" name="idLabels" onChange={onChange} value="605e18e3184d2c731b95b3ac" />
                   <span className="checkbox__control">
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
                       <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg>
                   </span>
                 </span>
-                <span className="radio__label">Option 1</span>
+                <span className="radio__label">Green</span>
               </label>
               <label className="checkbox">
                 <span className="checkbox__input">
-                  <input type="checkbox" id="color" value="red" />
+                  <input type="checkbox" name="idLabels" onChange={onChange} value="605e18e3184d2c731b95b3b3" />
                   <span className="checkbox__control">
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
                       <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg>
                   </span>
                 </span>
-                <span className="radio__label">Option 2</span>
+                <span className="radio__label">Red</span>
               </label>
               <label className="checkbox">
                 <span className="checkbox__input">
-                  <input type="checkbox" id="color" value="green" />
+                  <input type="checkbox" name="idLabels" onChange={onChange} value="605e18e3184d2c731b95b3b6" />
                   <span className="checkbox__control">
                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria-hidden="true" focusable="false">
                       <path fill='none' stroke='currentColor' stroke-width='3' d='M1.73 12.91l6.37 6.37L22.79 4.59' /></svg>
                   </span>
                 </span>
-                <span className="radio__label">Option 3</span>
+                <span className="radio__label">Blue</span>
               </label>
             </div>
 
 
             <div className="item">
-              <Select options={options} id="dropdown" />
+              <label htmlFor="dropdown"></label>
+
+              <Select options={options} />
             </div>
             <div className="item">
               <div className="tags"></div>
