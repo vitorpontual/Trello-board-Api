@@ -1,5 +1,4 @@
 import React, { FormEvent, useState } from "react";
-import Select from "react-select";
 import * as dotenv from "dotenv";
 
 import './styles/pages/trelloboard.css'
@@ -14,6 +13,7 @@ const initialValue = {
   email: "",
   desc: "",
   idLables: "",
+  due: "",
 }
 
 function App(){
@@ -129,9 +129,13 @@ function App(){
 
 
             <div className="item">
-              <label htmlFor="dropdown"></label>
+              <label htmlFor="due"></label>
+              <select className="due" name="due" onChange={onChange}>
+                <option value={options[0].value}>+ 1 Hour</option>
+                <option value={options[1].value}>+3 Hours</option>
+                <option value={options[2].value}>+5 Hours</option>
+              </select>
 
-              <Select options={options} />
             </div>
             <div className="item">
               <div className="tags"></div>

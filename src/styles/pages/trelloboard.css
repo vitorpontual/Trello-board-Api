@@ -161,6 +161,10 @@ form .due {
   color: white;
 }
 
+form .due option {
+  height: 100px;
+}
+
 form option{
   color: white;
 }
