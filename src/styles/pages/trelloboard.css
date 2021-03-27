@@ -37,7 +37,7 @@ form {
   form {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 351px;
   }
   form .confirm-button{
     position: absolute;
@@ -158,14 +158,6 @@ form .due {
   border: 1px solid var(--primary-color);
   background-color:rgb(68, 129, 185);
 
-  color: white;
-}
-
-form .due option {
-  height: 100px;
-}
-
-form option{
   color: white;
 }
 

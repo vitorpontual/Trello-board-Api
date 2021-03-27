@@ -16,7 +16,7 @@ const initialValue = {
   due: "",
 }
 
-function App(){
+function App() {
   const [values, setValues] = useState(initialValue)
 
   function onChange(event: any) {
@@ -30,9 +30,9 @@ function App(){
   const myDate = new Date();
 
   const options = [
-    {  value: myDate.setHours(myDate.getHours() + 1), label: "1 Hour" },
-    {  value: myDate.setHours(myDate.getHours() + 3), label: "3 Hours" },
-    {  value: myDate.setHours(myDate.getHours() + 5), label: "5 hours" },
+    { value: myDate.setHours(myDate.getHours() + 1), label: "1 Hour" },
+    { value: myDate.setHours(myDate.getHours() + 3), label: "3 Hours" },
+    { value: myDate.setHours(myDate.getHours() + 5), label: "5 hours" },
   ]
 
   async function handleSubmit(event: FormEvent) {
@@ -46,10 +46,10 @@ function App(){
       body: jason,
       headers: {
         'Content-Type': 'application/json',
-        
+
       }
     })
-    .then(response => {
+      .then(response => {
         console.log(
           `Response: ${response.status} ${response.statusText}`
         );
@@ -57,8 +57,8 @@ function App(){
       })
       .then(text => console.log(text))
       .catch(err => console.error(err));
-      
-      window.location.reload()
+
+    window.location.reload()
   }
 
   return (
@@ -131,9 +131,9 @@ function App(){
             <div className="item">
               <label htmlFor="due"></label>
               <select className="due" name="due" onChange={onChange}>
-                <option value={options[0].value}>+ 1 Hour</option>
-                <option value={options[1].value}>+3 Hours</option>
-                <option value={options[2].value}>+5 Hours</option>
+                  <option value={options[0].value}>+ 1 Hour</option>
+                  <option value={options[1].value}>+3 Hours</option>
+                  <option value={options[2].value}>+5 Hours</option>
               </select>
 
             </div>
