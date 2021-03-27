@@ -30,9 +30,9 @@ function App() {
   const myDate = new Date();
 
   const options = [
-    { value: myDate.setHours(myDate.getHours() + 1), label: "1 Hour" },
-    { value: myDate.setHours(myDate.getHours() + 3), label: "3 Hours" },
-    { value: myDate.setHours(myDate.getHours() + 5), label: "5 hours" },
+    { value: myDate.setHours(myDate.getHours() + 2), label: "2 Hour" },
+    { value: myDate.setHours(myDate.getHours() + 4), label: "3 Hours" },
+    { value: myDate.setHours(myDate.getHours() + 6), label: "5 hours" },
   ]
 
   async function handleSubmit(event: FormEvent) {
